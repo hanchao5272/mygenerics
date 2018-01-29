@@ -2,7 +2,7 @@ package pers.hanchao.generics.mylist;
 
 import org.junit.Test; 
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
 
 /** 
 * MyList Tester. 
@@ -58,7 +58,7 @@ public void testPrint() throws Exception {
         companyMyList.add(new Company(12,"中公司","上海"));
         companyMyList.add(new Company(13,"小公司","广州"));
         companyMyList.print();
-} 
+}
 
 
 } 

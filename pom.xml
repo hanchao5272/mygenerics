@@ -8,10 +8,29 @@
   <name>mygenerics Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <junit.version>3.8.1</junit.version>
+    <junit.version>4.12</junit.version>
     <log4j.version>1.2.17</log4j.version>
+    <commons-logging.version>1.2</commons-logging.version>
+    <commons-lang3.version>3.3.2</commons-lang3.version>
+    <commons-io.version>2.4</commons-io.version>
   </properties>
   <dependencies>
+    <!--基本包-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>${commons-logging.version}</version>
+    </dependency>
     <!--日志打印-->
     <dependency>
       <groupId>log4j</groupId>
@@ -24,11 +43,6 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>RELEASE</version>
     </dependency>
   </dependencies>
   <build>
