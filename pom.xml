@@ -13,6 +13,7 @@
     <commons-logging.version>1.2</commons-logging.version>
     <commons-lang3.version>3.3.2</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
+    <compiler-plugin.version>3.7.0</compiler-plugin.version>
   </properties>
   <dependencies>
     <!--基本包-->
@@ -47,5 +48,21 @@
   </dependencies>
   <build>
     <finalName>mygenerics</finalName>
+    <plugins>
+      <!--Maven编译插件：解决属性项目，编译配置回退至jdk1.5的问题-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+        <configuration>
+          <!--开发环境：1.8-->
+          <source>1.8</source>
+          <!--编译环境：1.8-->
+          <target>1.8</target>
+          <!--编码方式-->
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

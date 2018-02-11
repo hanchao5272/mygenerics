@@ -8,7 +8,8 @@ Key promoter    款解决提醒
 Statistic   项目统计
 ApiDebugger API测试
 
-http://blog.csdn.net/anuocat/article/details/72811181
+修改已经提交的pus
+http://blog.csdn.net/yulsh/article/details/54613189
 
 通配符
 http://blog.csdn.net/u011784767/article/details/54016774
