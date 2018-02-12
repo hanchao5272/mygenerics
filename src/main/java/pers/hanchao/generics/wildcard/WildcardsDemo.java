@@ -26,43 +26,64 @@ public class WildcardsDemo {
 
         LOGGER.info("==============无界限类型通配符（?）学习示例==============");
         //测试无边界类型通配符
-        //这个无边界类型的列表，可以添加任意类型的对象
+        //通过泛型方法进行数据初始化。这个无边界类型的列表，可以初始化任意类型的对象
         List<?> list = Arrays.asList("1",5,10D,20L,30F,true,
                 new Person(1,"张三"),
                 new Worker(1,"张三","程序猿"),
                 new Programmer(1,"张三","程序猿","Java"));
+
+        //下面的add操作类型检查报错，因为?代表不确定其类型，所以不知道如何添加
+        //list.add(new Integer(1));
+
+        //Integer、Person类型都可以通过get取值，取值需要类型转换
+        Integer integer = (Integer) list.get(1);
+        Object obj = list.get(0);
+        Person person = (Person) list.get(0);
+
         //可以打印所有类型(基本数据类型会被装箱成包装类)
         printAllObject(list);
 
         ///////////////////////////////////// ? extends XxxX //////////////////////////////////////
         LOGGER.info("==============上边界类型通配符（? extends）学习示例==============");
         //测试上边界类型通配符 ? extends XXXXX
-        //这个数值类型的列表，只能添加数值类型的对象
+        //通过泛型方法进行数据初始化
         List<? extends Number> numberList  = Arrays.asList(5,10D,20L,30F);
-        //如果添加其他类型的对象，编译无法通过
-        //numberList.add("1");
-        //numberList.add(new Person(1,"张三"));
+
+        //下面的add操作类型检查报错，因为?代表不确定其类型，所以不知道如何添加
+        //numberList.add(new Integer(1));
+
+        //Number类型的及子类型可以通过get获取值，但是需要注意类型转换
+        Number number = (Number) list.get(0);
+        Integer integer1 = (Integer) list.get(0);
+        //Person类型不是Number类的子类，不能通过get获取值
+        //Person person1 = numberList.get(0);
+
 
         List<? extends Person> peopleList = Arrays.asList(new Person(1,"张三"),
                 new Worker(1,"张三","程序猿"),
                 new Programmer(1,"张三","程序猿","Java"));
-        //编译无法通过
-        //peopleList.add(1);
+        //类型检查无法通过
+        //peopleList.add(new Person(1,"张三"));
+        Programmer programmer = (Programmer) peopleList.get(0);
+        Worker worker  = (Worker) peopleList.get(0);
+        //因为Integer与Person无继承关系，所以，无论如何也无法取值
+        //Integer integer2 = peopleList.get(0);
 
         //因为方法的参数限定了边界，所以也会进行类型检查printNumberList只能接受Number类型的列表
-        //编译通过
+        //类型检查通过
         printNumberList(numberList);
-        //编译无法通过
+        //类型检查无法通过
         //printNumberList(peopleList);
-        //编译无法通过
+        //类型检查无法通过
         //printPersonList(numberList);
-        //编译通过
+        //类型检查通过
         printPersonList(peopleList);
 
         ///////////////////////////////////// ? super XxxX //////////////////////////////////////
         LOGGER.info("==============下边界类型通配符（? super）学习示例==============");
         //测试下边界类型通配符? super XXX
         List<? super Number> numberList2 = Arrays.asList(5,10D,20L,30F);
+
     }
 
     /**
@@ -86,16 +107,50 @@ public class WildcardsDemo {
      * @author 韩超@bksx 2018/2/11 14:28
      */
     static void printNumberList(List<? extends Number> list){
+        //不能add值，因为类型不确定
+        Integer integer = new Integer(1);
+        //list.add(integer);
         for (Number item : list){
             LOGGER.info(item.getClass().toString() + " , doubleValue : " + item.doubleValue());
         }
         System.out.println();
     }
     static void printPersonList(List<? extends Person> list){
+        //不能add值，因为类型不确定
+        Person person = new Person(1,"张三");
+        //list.add(person);
         for (Person item : list){
             LOGGER.info(item.getClass().toString() + " , name : " + item.getName());
         }
         System.out.println();
     }
 
+    /**
+     * <p>Title: 下边界类型通配符<br/>
+     * 下边界类型指的是：不能确定具体类型，只能确定其子类型，即该类继承自当前类。<br/>
+     * 下边界类型通配符修饰的对象，</p>
+     * @author 韩超@bksx 2018/2/11 15:38
+     */
+    static List setNumberList(List<? super Programmer> list){
+        //只能够添加Programmer类型的对象
+        Programmer programmer = new Programmer(2,"李四","攻城狮","C#");
+        list.add(programmer);
+        //不能添加其他类型的对象
+        //Worker worker = new Worker(1,"张三","程序猿");
+        //list.add(worker);
+
+        Object o = list.get(0);
+        Person person = (Person) list.get(0);
+
+        return list;
+    }
+
+    static void test1(List<? super Worker> list){
+        Person person = new Person(1,"张三");
+        Worker worker = new Worker(1,"张三","程序猿");
+        Programmer programmer = new Programmer(1,"张三","程序猿","Java");
+        list.add(programmer);
+        list.add(worker);
+//        list.add(person);
+    }
 }

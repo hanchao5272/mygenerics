@@ -1,8 +1,7 @@
 package pers.hanchao.generics.wildcard;
 
-import java.util.Objects;
-
 /**
+ * 工人
  * Created by 韩超 on 2018/2/11.
  */
 public class Worker extends Person{
@@ -22,7 +21,7 @@ public class Worker extends Person{
     public String toString() {
         return "Worker{" +
                 "job='" + job + '\'' +
-                "} " + super.toString();
+                '}';
     }
 
     public String getJob() {

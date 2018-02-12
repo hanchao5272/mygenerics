@@ -1,8 +1,7 @@
 package pers.hanchao.generics.wildcard;
 
-import java.util.Objects;
-
 /**
+ * 人
  * Created by 韩超 on 2018/2/11.
  */
 public class Person {

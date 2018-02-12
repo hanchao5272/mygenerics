@@ -1,6 +1,7 @@
 package pers.hanchao.generics.wildcard;
 
 /**
+ * 软件攻城狮
  * Created by 韩超 on 2018/2/11.
  */
 public class Programmer extends Worker {
@@ -11,7 +12,7 @@ public class Programmer extends Worker {
     public String toString() {
         return "Programmer{" +
                 "lang='" + lang + '\'' +
-                "} " + super.toString();
+                '}';
     }
 
     public String getLang() {
