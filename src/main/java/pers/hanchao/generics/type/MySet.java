@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 演示K,V这种参数类型的用法
- * Created by 韩超 on 2018/1/30.
+ * <p>Title: 映射泛型类型示例</p>
+ * @author 韩超@bksx 2018/2/22 11:15
  */
 public class MySet<K,V> {
     private Map<K,V> map = new HashMap<K, V>();
@@ -22,5 +22,13 @@ public class MySet<K,V> {
 
     public int mySize(){
         return map.size();
+    }
+    /**
+     * <p>Title: 映射泛型类型示例</p>
+     * @author 韩超@bksx 2018/2/22 11:14
+     */
+    public static void main(String[] args){
+        MySet<String,Integer> mySet = new MySet<String, Integer>();
+        mySet.myPut("001",100);
     }
 }
