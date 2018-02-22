@@ -2,6 +2,7 @@ package pers.hanchao.generics.method;
 
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,5 +20,11 @@ public class ListPrintUtils {
                 LOGGER.info(e.toString());
             }
         }
+    }
+    public static void main(String[] args){
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1,"张三"));
+        userList.add(new User(2,"李四"));
+        ListPrintUtils.printList(userList);
     }
 }
