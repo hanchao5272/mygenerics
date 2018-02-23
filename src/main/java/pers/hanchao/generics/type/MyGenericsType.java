@@ -11,6 +11,10 @@ public class MyGenericsType<T> {
 
     private T t;
 
+    public void setT(T t) {
+        this.t = t;
+    }
+
     /**
      * <p>Title: 这是一个普通方法</p>
      * @author 韩超@bksx 2018/2/22 10:52
