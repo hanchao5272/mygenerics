@@ -14,6 +14,14 @@ public class BoundedWildcardsDemo {
     private final static Logger LOGGER = Logger.getLogger(BoundedWildcardsDemo.class);
 
     /**
+     * <p>Title: <T>与<?>示例</></></p>
+     * @author 韩超 2018/2/23 16:33
+     */
+    static class Demo1<T>{
+        private T t;
+    }
+
+    /**
      * <p>Title: 通配符：上边界、下边界和无边界</p>
      *
      * Person<br/>
@@ -25,13 +33,23 @@ public class BoundedWildcardsDemo {
      * @author 韩超@bksx 2018/2/12 9:57
      */
     public static void main(String[] args){
+        //<?>示例
+        //List类的示例中用到了<E>，即<T>
+        //我们可以确定具体类型时，直接使用具体类型
+        Demo1<Integer> integerList = new Demo1<Integer>();
+        //我们不能确定具体类型时，可以使用泛型类型
+        Demo1<? extends Number> numberList = null;
+        //我们能够确定具体类型时，在实例化成具体类型
+        numberList = new Demo1<Integer>();
+        numberList = new Demo1<Double>();
+
         Person person = new Person(1,"张三");
         Worker worker = new Worker(1,"张三","攻城狮");
         Programmer programmer = new Programmer(1,"张三","攻城狮","Java");
         JavaProgrammer javaProgrammer = new JavaProgrammer(1,"张三","攻城狮","Java","架构师");
         JavaArchitectProgrammer architectProgrammer = new JavaArchitectProgrammer(1,"张三","攻城狮","Java","架构师");
 
-        LOGGER.info("上边界类型通配符（? extends ）示例");
+        LOGGER.info("上边界类型通配符（<? extends >）示例");
         //测试上边界类型通配符
         //定义一个列表，唯一可以确定的是：此列表的元素类型的父类型是Programmer
         List<? extends Programmer> programmerUpperList = null;
@@ -58,9 +76,9 @@ public class BoundedWildcardsDemo {
         //不能确定之后实例化的类型是Programmer、JavaProgrammer还是JavaArchitectProgrammer，所以不接受add
 //        programmerUpperList.add(programmer);
         ////总结：add方法受限，可以进行取值。
-        LOGGER.info("上边界类型通配符（? extends）：因为可以确定最大类型，所以可以以最大类型去获取数据。但是不能写入数据。\n");
+        LOGGER.info("上边界类型通配符（<? extends>）：因为可以确定最大类型，所以可以以最大类型去获取数据。但是不能写入数据。\n");
 
-        LOGGER.info("下边界类型通配符（? super ）示例");
+        LOGGER.info("下边界类型通配符（<? super >）示例");
         //测试下边界类型通配符
         //定义一个列表，唯一可以确定的是：此列表的元素类的子类型是Programmer
         List<? super Programmer> programmerLowerList = null;
@@ -76,7 +94,7 @@ public class BoundedWildcardsDemo {
         programmerLowerList.add(architectProgrammer);
         LOGGER.info(programmerLowerList);
         LOGGER.info("存的什么类型，就是什么类型");
-        LOGGER.info("下边界类型通配符（? super）：因为可以确定最小类型，所以可以以最小类型去写入数据。但是不能获取数据。\n");
+        LOGGER.info("下边界类型通配符（<? super>）：因为可以确定最小类型，所以可以以最小类型去写入数据。但是不能获取数据。\n");
 
         LOGGER.info("无边界类型通配符示例，无边界=上边界Object");
         //无边界类型通配符示例
@@ -90,16 +108,24 @@ public class BoundedWildcardsDemo {
         Object obj1 = programmerNoList.get(1);
         LOGGER.info(obj0.getClass().toString() + " : " + obj0.toString());
         LOGGER.info(obj1.getClass().toString() + " : " + obj1.toString());
-        LOGGER.info("无边界类型通配符（?）：等同于（? extends Object），因为可以确定最大类型为Object，所以可以以Object类型去获取数据。但是不能写入数据。\n");
+        LOGGER.info("无边界类型通配符（<?>）：等同于（<? extends Object>），因为可以确定最大类型为Object，所以可以以Object类型去获取数据。但是不能写入数据。\n");
 
-        LOGGER.info("下边界类型通配符（? extends ）的继续理解：上边界类型通配符真的无法取值吗？");
+        LOGGER.info("下边界类型通配符（<? extends >）的继续理解：上边界类型通配符真的无法取值吗？");
         //上面已经因为无法确定类型，所以无法通过向上转型取值
 //        programmer = programmerLowerList.get(0);
         //但是可以确定其最大类型必然是Object，是否可以通过Object取值？？
         Object object =  programmerLowerList.get(0);
         LOGGER.info(object.getClass().toString() + ":" + object.toString());
-        LOGGER.info("下边界类型通配符（? super ） = （? super ） + （? extends Object）");
+        LOGGER.info("下边界类型通配符（<? super >） = （<? super >） + （<? extends Object>）");
         LOGGER.info("意义不大");
+
+        LOGGER.info("向上转型与向下转型");
+        //子类Integer转换成父类型Object
+        Object integer = new Integer(1);
+        //向下转型（有风险需谨慎）
+        Integer integer1 = (Integer) new Object();
+        integer1.intValue();
+
     }
 
 
