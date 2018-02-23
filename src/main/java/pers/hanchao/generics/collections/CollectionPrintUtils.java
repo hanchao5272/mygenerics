@@ -2,7 +2,7 @@ package pers.hanchao.generics.collections;
 
 import org.apache.log4j.Logger;
 
-import java.util.Collection;
+import java.util.*;
 
 /**
  * 演示Java自带泛型的集合Collection类型
@@ -22,5 +22,26 @@ public class CollectionPrintUtils {
             //java lambda表达式
             collection.forEach(LOGGER::info);
         }
+    }
+
+    /**
+     * <p>Java泛型在List和Set中的使用</p>
+     * @author hanchao 2018/2/23 22:13
+     **/
+    public static void main(String[] args) {
+        //List
+        List<Integer> integerList = new ArrayList<Integer>();
+        integerList.add(new Integer(1));
+        integerList.add(2);
+        integerList.add(new Integer(3));
+        LOGGER.info("integerList的元素如下：");
+        CollectionPrintUtils.pringCollection(integerList);
+        //Set
+        Set<String > stringSet = new HashSet<String>();
+        stringSet.add("set1");
+        stringSet.add("set2");
+        stringSet.add("set3");
+        LOGGER.info("stringSet的元素如下");
+        CollectionPrintUtils.pringCollection(stringSet);
     }
 }

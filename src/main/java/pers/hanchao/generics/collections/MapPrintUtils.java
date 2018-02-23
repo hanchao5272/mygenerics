@@ -2,6 +2,8 @@ package pers.hanchao.generics.collections;
 
 import org.apache.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -24,5 +26,26 @@ public class MapPrintUtils {
                 LOGGER.info("key:" + key + ",value:" + value);
             }
         }
+    }
+    /**
+     * <p>Java泛型在Map中的使用</p>
+     * @author hanchao 2018/2/23 22:14
+     **/
+    public static void main(String[] args) {
+        //hashMap
+        Map<String ,String> hashMap = new HashMap<>();
+        hashMap.put("key1","value1");
+        hashMap.put(null,"value2");
+        hashMap.put("key3",null);
+        LOGGER.info("hashMap的元素如下");
+        MapPrintUtils.printSet(hashMap);
+
+        //hashTable
+        Map<Integer,Double> hashTable = new Hashtable<>();
+        hashTable.put(1,2D);
+        hashTable.put(2,3D);
+        hashTable.put(3,4D);
+        LOGGER.info("hashTable的元素如下：");
+        MapPrintUtils.printSet(hashTable);
     }
 }
